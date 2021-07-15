@@ -24,7 +24,7 @@ def get_occupancy():
     capacity_str = str(raw_capacity)
     index = capacity_str.find("%")
 
-    print(capacity_str)
+    #print(capacity_str)
     capacity = capacity_str[index - 2] + capacity_str[index - 1]
 
     # print(index,capacity)
@@ -44,6 +44,15 @@ auto_log_in()
 
 time.sleep(5) #wait some time to let the next page load
 
-occupancy = get_occupancy()
+time_elapsed = 0
+last_hit = 0
+while(True):
 
-print("Gym Occupancy is:",occupancy, "%")
+    if time_elapsed > 60:
+        occupancy = get_occupancy()
+
+        print("Gym Occupancy is:",occupancy, "%")
+        p_browser.refresh()
+        last_hit = time.time()
+
+    time_elapsed = time.time() - last_hit
