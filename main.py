@@ -30,9 +30,6 @@ def get_occupancy():
     # print(index,capacity)
     return capacity
 
-
-
-
 url = 'https://www.thegymgroup.com/member-area/my-gym/average-usage-chart/' #url of the usage chart
 
 p_browser = webdriver.Chrome("C:\\Users\\murth\\Documents\\Projects\\Programming\\GymNotif\\chromedriver_win32\\chromedriver.exe") #change path to chromedriver based on your own machine
@@ -46,9 +43,10 @@ time.sleep(5) #wait some time to let the next page load
 
 time_elapsed = 0
 last_hit = 0
+refresh_interval = 60
 while(True):
 
-    if time_elapsed > 60:
+    if time_elapsed > refresh_interval:
         occupancy = get_occupancy()
 
         print("Gym Occupancy is:",occupancy, "%")
